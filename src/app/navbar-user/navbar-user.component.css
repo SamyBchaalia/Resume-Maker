@@ -6,3 +6,25 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
+.badge {
+  position: absolute;
+  top:  -6px;
+  left: 21px;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 50%;
+  color: red;
+  font-weight: bold;
+  font-size: large;
+}
+.badge2 {
+  position: absolute;
+  top: -2px;
+  left: 21px;
+ 
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 50%;
+  color: red;
+  font-weight: bold;}
