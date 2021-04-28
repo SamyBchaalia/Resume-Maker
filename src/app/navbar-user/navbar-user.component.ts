@@ -38,4 +38,5 @@ export class NavbarUserComponent implements OnInit {
     this.router.navigateByUrl("/notifications");
   }
   
+  
 }

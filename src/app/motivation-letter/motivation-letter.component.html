@@ -1,3 +1,51 @@
-<app-navbar-user></app-navbar-user>
 
-<h1>motivation-letter works!</h1>
+
+<body id="coverLetter">
+<main>
+    <header class="container">
+        <div class="row">
+            <div class="text-sm-center col-sm-12 col-md-5 col align-middle headerTitle">
+                <h3 class="display-3 cover-letter">Cover Letter</h3>
+            </div>
+            <div class="text-sm-center pb-sm-2 col-sm-12 col-md-4 col-lg-4 text-md-right headerContactInfo">
+                <h2>Francisco Cruz <br> Developer</h2>
+                <a href="tel:201-621-2019">201-621-2019</a><br>
+                <a href="tel:201-472-3514">201-472-3514</a><br>
+                <a href="mailto:tcm_usa@hotmail.com?Subject=Interested%20Employer">tcm_usa@hotmail.com</a><br>
+                <a href="https://www.linkedin.com/in/frcruz" target="_blank">https://www.linkedin.com/in/frcruz</a>
+            </div>
+            <div class="text-sm-center col-sm-12 col-md-3 col-lg-2 headerProfileImg">
+                <img class="profileImg" style="border: radius 50%;;" src="https://scontent.ftun3-1.fna.fbcdn.net/v/t1.6435-9/119576552_2926875807539718_5662028280741209455_n.jpg?_nc_cat=105&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=xVICnb-cS8UAX-SU982&_nc_ht=scontent.ftun3-1.fna&oh=f872edd9c2607a1f3d5c965c4702db2b&oe=60AEAFA6" alt="Francisco Cruz, Developer" width="190">
+            </div>
+        </div>
+        
+    </header>
+    <section>
+        <article>
+            <br><br>
+            <p>
+            Greetings!<br><br>
+            I am a Software and Web Developer with 5+ years experience in Front-End, Back-End, and Full-Stack scripting, programming, testing, and development. 
+            I have experience working for small businesses, fortune 100 and fortune 500 companies.
+            Also, I have experience working across departments, teams (in-house and International), as well as client-facing.<br><br>
+            As a consultant and freelancer, I acquired in-depth non-technial skills and experience such as requirement gathering, planning, team collaboration, research, design / technical presentations, product reviews, handling meetings, managerial and project management skills, and client relationships among other relevant programming skills. </p>
+            
+            <p>For more information, please see my recommendations, reviews, and ratings at:</p>
+            <ul class="icon">
+                <li><i class="material-icons">open_in_new</i>  <a href="https://www.linkedin.com/in/frcruz" target="_blank">https://www.linkedin.com/in/frcruz</a> (please view the embedded portfolio on my LinkedIn profile)</li>
+            </ul>
+            <hr class="my-4">
+    </article>
+    
+    </section>
+</main>
+
+</body>
+<button
+      mat-raised-button
+      color="primary"
+      value="Generate PDF"
+      (click)="getMotivationLetter()"
+    >
+      Generate PDF
+    </button>

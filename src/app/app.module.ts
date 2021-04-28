@@ -29,15 +29,18 @@ import {MatListModule} from '@angular/material/list'
 import {MatIconModule} from '@angular/material/icon'
 import {MatButtonModule} from '@angular/material/button'
 import {HomeComponent} from './home/home.component'
+import {MatBadgeModule} from '@angular/material/badge'
 import { from } from "rxjs";
+import html2pdf from "html2pdf.js"
+import { CoverLetterGeneratorComponent } from './cover-letter-generator/cover-letter-generator.component';
 
 @NgModule({
-  declarations: [HomeComponent,AppComponent,TestingComponent, ResumeComponent, CoachesListComponent, OneCoacheComponent, MotivationLetterComponent, NotificationComponent, NavbarUserComponent, TestingComponent],
+  declarations: [HomeComponent,AppComponent,TestingComponent, ResumeComponent, CoachesListComponent, OneCoacheComponent, MotivationLetterComponent, NotificationComponent, NavbarUserComponent, TestingComponent, CoverLetterGeneratorComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, BrowserAnimationsModule,MatIconModule,
     MatListModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatButtonModule,
+    MatButtonModule,MatBadgeModule,
     FlexLayoutModule],
 
   providers: [],
