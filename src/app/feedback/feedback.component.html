@@ -1,0 +1,51 @@
+<h1>feedback works!</h1>
+<div class="card text-center">
+  <div class="card-header">
+    {{feedback?.about}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">
+      {{feedback?.data}}.
+    </p>
+    <a *ngIf="!req" (click)="senReq()" class="btn btn-primary">Consult Coach</a>
+    <div *ngIf="req">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Email address</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="about"
+          #title
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label"
+          >Example textarea</label
+        >
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          #feedback
+        ></textarea>
+      </div>
+      <button type="button" (click)="senReq()" class="btn btn-danger">
+        Cancel
+      </button>
+      <button
+        type="button"
+        (click)="sendRequest(title.value, feedback.value)"
+        class="btn btn-success"
+      >
+        Send
+      </button>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>

@@ -8,32 +8,23 @@ import { Router } from "@angular/router";
 })
 export class HomeComponent implements OnInit {
   constructor(private router: Router) {}
-UserLoggedIn :boolean = true;
-Username:any;
-  ngOnInit(): void {
-    if(this.UserLoggedIn)
-    {
-      this.Username="Samy";
-    }
-    else{
-      this.Username="Join Us";
-    }
-  }
+
+  ngOnInit(): void {}
   goto() {
     this.router.navigateByUrl("/form");
   }
   cvClicked()
   {
-    alert("hello");
+    this.router.navigateByUrl("/resume");
+
   }
   motivationLetterClicked()
   {
-    alert("hello");
+    this.router.navigateByUrl("/motivationLetter");
+
   }
   consultationClicked()
   {
-    alert("hello");
+    this.router.navigateByUrl("/coachList");
   }
 }
-
-

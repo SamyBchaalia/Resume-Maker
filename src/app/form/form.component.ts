@@ -11,18 +11,9 @@ import { environment } from "../../environments/environment";
 export class FormComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
-  ngOnInit(): void {
-    const sign_in_btn = document.querySelector("#sign-in-btn");
-const sign_up_btn = document.querySelector("#sign-up-btn");
-const container = document.querySelector(".container");
-sign_up_btn.addEventListener('click', () => {
-  container.classList.add("sign-up-mode");
-});
+  ngOnInit(): void {}
+  imageUrl: string;
 
-sign_in_btn.addEventListener('click', () => {
-  container.classList.remove("sign-up-mode");
-});
-  }
   signUp(n, p, rp) {
     if (p === rp) {
       var obj = {
@@ -44,7 +35,7 @@ sign_in_btn.addEventListener('click', () => {
   }
   signIn(password) {
     this.http
-      .post(`${environment}/api/user/${password}`, {
+      .post(`${environment.URL}/api/user/${password}`, {
         responseType: "text",
       })
       .subscribe((data) => {
@@ -57,5 +48,4 @@ sign_in_btn.addEventListener('click', () => {
         }
       });
   }
-
 }

@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import { environment } from "../../environments/environment";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-resume",
@@ -10,18 +11,28 @@ import { environment } from "../../environments/environment";
   styleUrls: ["./resume.component.css"],
 })
 export class ResumeComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
   user: any;
   soft: any;
   tech: any;
   experience: any;
   education: any;
+  language: any;
   addsoft: any = false;
   addtech: any = false;
+  addlanguage: any = false;
   addexperience: any = false;
   addeducation: any = false;
+  delete: any = false;
   id: any = localStorage.getItem("id");
   ngOnInit(): void {
+    this.http
+      .post(`${environment.URL}/api/getuser/${this.id}`, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        this.user = data;
+      });
     this.http
       .post(`${environment.URL}/api/soft/${this.id}`, {
         responseType: "json",
@@ -36,7 +47,88 @@ export class ResumeComponent implements OnInit {
       .subscribe((data) => {
         this.tech = data;
       });
+    this.http
+      .post(`${environment.URL}/api/language/${this.id}`, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        this.language = data;
+      });
+    this.http
+      .post(`${environment.URL}/api/experience/${this.id}`, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        this.experience = data;
+        console.log(this.experience);
+      });
+    this.http
+      .post(`${environment.URL}/api/education/${this.id}`, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        this.education = data;
+      });
   }
+  goto(to) {
+    this.router.navigateByUrl(to);
+  }
+  active() {
+    this.delete = true;
+  }
+  /////////// SOFT experience //////////////////
+  addexp() {
+    this.addexperience = true;
+  }
+  cancelexp() {
+    this.addexperience = false;
+  }
+  saveexp(startDate, endDate, company, post, discription) {
+    var obj = {
+      userId: this.id,
+      startDate,
+      endDate,
+      company,
+      post,
+      discription,
+    };
+    this.http
+      .post(`${environment.URL}/api/ex`, obj, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        this.ngOnInit();
+        this.addexp();
+      });
+  }
+  ////////////// END experice //////////
+
+  /////////// SOFT education //////////////////
+  addEducation() {
+    this.addeducation = true;
+  }
+  canceleducation() {
+    this.addeducation = false;
+  }
+  saveeducation(startDate, endDate, university, diploma, discription) {
+    var obj = {
+      userId: this.id,
+      startDate,
+      endDate,
+      university,
+      diploma,
+      discription,
+    };
+    this.http
+      .post(`${environment.URL}/api/education`, obj, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        this.ngOnInit();
+        this.canceleducation();
+      });
+  }
+  ////////////// END experice //////////
 
   /////////// SOFT SKILLS //////////////////
   addSoft() {
@@ -50,7 +142,6 @@ export class ResumeComponent implements OnInit {
       userId: this.id,
       skill: skill,
     };
-    console.log(obj);
     this.http
       .post(`${environment.URL}/api/soft`, obj, {
         responseType: "json",
@@ -61,6 +152,58 @@ export class ResumeComponent implements OnInit {
       });
   }
   ////////////// END SOFT //////////
+  ///////////////// DELETE DATA ////////////////
+  deletesoft(id) {
+    this.http
+      .delete(`${environment.URL}/api/soft/${id}`, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        alert("deleted");
+        this.ngOnInit();
+      });
+  }
+  deleteexperience(id) {
+    this.http
+      .delete(`${environment.URL}/api/experience/${id}`, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        alert("deleted");
+        this.ngOnInit();
+      });
+  }
+  deleteeducation(id) {
+    this.http
+      .delete(`${environment.URL}/api/education/${id}`, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        alert("deleted");
+        this.ngOnInit();
+      });
+  }
+  deletelanguage(id) {
+    this.http
+      .delete(`${environment.URL}/api/language/${id}`, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        alert("deleted");
+        this.ngOnInit();
+      });
+  }
+  deletetech(id) {
+    this.http
+      .delete(`${environment.URL}/api/tech/${id}`, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        alert("deleted");
+        this.ngOnInit();
+      });
+  }
+  ////////////// END DELETE ///////////////////
 
   /////////// SOFT tech //////////////////
   addTech() {
@@ -85,6 +228,106 @@ export class ResumeComponent implements OnInit {
       });
   }
   ////////////// END tech //////////
+  /// UPDATE DATA ///////
+  updateexperience(id, startDate, endDate, company, post, discription) {
+    var obj = {
+      startDate,
+      endDate,
+      company,
+      post,
+      discription,
+    };
+    console.log(obj);
+    this.http
+      .put(`${environment.URL}/api/experience/${id}`, obj, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        this.ngOnInit();
+      });
+  }
+
+  updateeducation(id, startDate, endDate, university, diploma, discription) {
+    var obj = {
+      startDate,
+      endDate,
+      university,
+      diploma,
+      discription,
+    };
+    this.http
+      .put(`${environment.URL}/api/education/${id}`, obj, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        this.ngOnInit();
+      });
+  }
+
+  updatesoft(id, skill) {
+    var obj = {
+      skill,
+    };
+    this.http
+      .put(`${environment.URL}/api/soft/${id}`, obj, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        this.ngOnInit();
+      });
+  }
+  utech(formId, display) {
+    document.getElementById(formId).style.display = display;
+  }
+
+  updatetech(id, skill) {
+    var obj = {
+      skill,
+    };
+    this.http
+      .put(`${environment.URL}/api/tech/${id}`, obj, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        this.ngOnInit();
+      });
+  }
+  updatelanguage(id, language) {
+    var obj = {
+      language,
+    };
+    this.http
+      .put(`${environment.URL}/api/language/${id}`, obj, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        this.ngOnInit();
+      });
+  }
+  ///// END UPDATE /////////
+  /////////// SOFT language //////////////////
+  addLanguage() {
+    this.addlanguage = true;
+  }
+  cancellanguage() {
+    this.addlanguage = false;
+  }
+  savelanguage(skill) {
+    var obj = {
+      userId: this.id,
+      language: skill,
+    };
+    console.log(obj);
+    this.http
+      .post(`${environment.URL}/api/language`, obj, {
+        responseType: "json",
+      })
+      .subscribe((data) => {
+        this.ngOnInit();
+        this.cancellanguage();
+      });
+  }
+  ////////////// END language //////////
   captureScreen() {
     const data = document.getElementById("contentToConvert");
     html2canvas(data).then((canvas) => {

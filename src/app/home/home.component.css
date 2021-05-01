@@ -1,14 +1,24 @@
-
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
 
   
   /* Jumbotron */
   .jumbotron {
-    background-image: url('../../assets/close-up-briefcase.jpg');
+    background-image: url(../../assets/close-up-briefcase.jpg);
     background-size: cover;
     height: 70%;
     width: 100%;
     z-index: -1;
   
+  }
+  a:hover {
+    cursor: pointer;
   }
   
   .jumbotron::after {
